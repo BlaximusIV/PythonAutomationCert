@@ -3,7 +3,7 @@
 import os
 import requests
 
-target_url = "http://[]/fruits"
+target_url = "http://[]/fruits/"
 description_directory = "supplier-data/descriptions"
 files = os.listdir(description_directory)
 
@@ -16,7 +16,7 @@ for file in files:
 
         description = {
             "name":lines[0].strip(),
-            "weight":lines[1].strip(" lbs"),
+            "weight":lines[1].strip(" lbs\n"),
             "description":lines[2].strip(),
             "image_name":file.replace("txt", "jpeg")
         }
@@ -24,7 +24,8 @@ for file in files:
         descriptions.append(description)
 
 for description in descriptions:
-    response = requests.post(target_url, json=description)
+    headers = { "Content-Type":"application/json" }
+    response = requests.post(target_url, json=description, headers=headers)
 
     if not response.ok:
         print("Unable to post the given description:\nResponse Code: {}\nReason:{}".format(response.status_code, response.reason))

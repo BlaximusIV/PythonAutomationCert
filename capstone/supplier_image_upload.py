@@ -10,7 +10,7 @@ jpeg_images = [image for image in image_files if image.endswith(".jpeg")]
 
 for image in jpeg_images:
     image_path = os.path.join(image_directory, image)
-    with open(image_path) as image_file:
+    with open(image_path, 'rb') as image_file:
         response = requests.post(url, files={'file': image_file})
         if not response.ok:
             print("Unable to post the given image:\n{}\n{}".format(response.status_code, response.reason))

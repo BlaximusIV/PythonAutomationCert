@@ -5,9 +5,7 @@ import mimetypes
 import os.path
 import smtplib
 
-server_address = ""
-
-def generate(sender, recipient, subject, body, attachment_path):
+def generate_email(sender, recipient, subject, body, attachment_path):
     """Creates an email with an attachment."""
     # Basic Email formatting
     message = email.message.EmailMessage()
@@ -31,8 +29,8 @@ def generate(sender, recipient, subject, body, attachment_path):
     return message
 
 # This method does not use ssl, therefore no credentials are used and it is unsecure
-def send(message):
+def send_email(message):
     """Sends the message to the configured SMTP server."""
-    mail_server = smtplib.SMTP(server_address)
+    mail_server = smtplib.SMTP('localhost')
     mail_server.send_message(message)
     mail_server.quit()

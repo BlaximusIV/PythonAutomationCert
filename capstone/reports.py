@@ -18,6 +18,3 @@ def generate_report(attachment, title, paragraph):
     report_body = Paragraph(paragraph, styles["BodyText"])
 
     report.build([report_title, report_body])
-
-
-

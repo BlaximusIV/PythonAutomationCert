@@ -11,8 +11,8 @@ def send_email(error_message):
     subject = "Error - {}".format(error_message)
     body = "Please check your system and resolve the issue as soon as possible"
 
-    email = emails.generate(sender, recipient, subject, body, None)
-    emails.send(email)
+    email = emails.generate_email(sender, recipient, subject, body, None)
+    emails.send_email(email)
 
 def check_health():
     cpu_usage = psutil.cpu_percent(1)
@@ -24,7 +24,7 @@ def check_health():
         send_email("CPU usage is over 80%")
     if (disk_usage.free / disk_usage.total) < .2:
         send_email("Available disk space is less than 20%")
-    if (memory_usage << 20) < 500:
+    if (memory_usage.available << 20) < 500:
         send_email("Available memory is less than 500MB")
     if not can_resolve_localhost:
         send_email("localhost cannot be resolved to 127.0.0.1")
