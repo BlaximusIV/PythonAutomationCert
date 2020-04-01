@@ -37,5 +37,4 @@ def scale_convert_directory(directory, rotation, width, height, target_dir):
             print("Unable to save image {}".format(image))
 
 if __name__ == "__main__":
-    dir, rotation, width, height, target_dir = sys.argv[1:]
-    scale_convert_directory(dir, rotation, width, height, target_dir)
+    scale_convert_directory("/images", 90, 240, 240, "/clean_images")
